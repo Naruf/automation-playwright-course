@@ -8,17 +8,6 @@ test("Product Page Add To Basket", async ({ page }) => {
     .first();
   const basketCount = page.locator('[data-qa="header-basket-count"]');
   const checkoutElemnt = page.getByRole("link", { name: "Checkout" });
-  // const productCard = page
-  //   .locator("div")
-  //   .filter({
-  //     hasText:
-  //       /^Astronaut dabbingImage by catalyststuff on Freepik499\$Remove from basket$/,
-  //   })
-  //   .nth(1);
-  // const totalElement = page.getByText("Total: 499$");
-  // const continueToCheckOut = page.getByRole("button", {
-  //   name: "Continue to Checkout",
-  // });
 
   await addProductInCartButton.waitFor();
 
@@ -33,10 +22,4 @@ test("Product Page Add To Basket", async ({ page }) => {
   await checkoutElemnt.waitFor();
   await checkoutElemnt.click();
   await page.waitForURL("/basket");
-
-  // await productCard.waitFor();
-  // await totalElement.waitFor();
-  // await continueToCheckOut.waitFor();
-
-  // await page.pause();
 });
