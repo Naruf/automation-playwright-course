@@ -1,8 +1,10 @@
 import { test } from "@playwright/test";
-import { ProductPage } from "../page-objects/ProductPage.js";
+import { ProductPage } from "../page-objects/ProductsPage";
 
 test.only("New user full end-to-end transaction", async ({ page }) => {
   const productsPage = new ProductPage(page);
   await productsPage.visit();
+  await productsPage.addProductToBasket(0);
+  await productsPage.addProductToBasket(3);
   await page.pause();
 });
