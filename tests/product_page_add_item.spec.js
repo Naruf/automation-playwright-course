@@ -7,7 +7,6 @@ test("Product Page Add To Basket", async ({ page }) => {
     .locator('[data-qa="product-button"]')
     .first();
   const basketCount = page.locator('[data-qa="header-basket-count"]');
-  const checkoutElemnt = page.getByRole("link", { name: "Checkout" });
 
   await addProductInCartButton.waitFor();
 
@@ -19,6 +18,7 @@ test("Product Page Add To Basket", async ({ page }) => {
   await expect(addProductInCartButton).toHaveText("Remove from Basket");
   await expect(basketCount).toHaveText("1");
 
+  const checkoutElemnt = page.getByRole("link", { name: "Checkout" });
   await checkoutElemnt.waitFor();
   await checkoutElemnt.click();
   await page.waitForURL("/basket");
