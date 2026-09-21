@@ -5,6 +5,6 @@ test.only("New user full end-to-end transaction", async ({ page }) => {
   const productsPage = new ProductPage(page);
   await productsPage.visit();
   await productsPage.addProductToBasket(0);
-  await productsPage.addProductToBasket(3);
-  await page.pause();
+  await productsPage.addProductToBasket(1);
+  await productsPage.addProductToBasket(2);
 });
