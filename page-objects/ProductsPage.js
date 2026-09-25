@@ -37,7 +37,5 @@ export class ProductPage {
     //define the new order of the titles after filtering
     expect(productTitleAfterSorting).not.toEqual(productTitleBeforeSorting);
     //assert before and after result using expect
-
-    await this.page.pause();
   };
 }
