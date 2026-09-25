@@ -14,7 +14,7 @@ export class Checkout {
   removeCheapestProduct = async () => {
     await this.basketCard.first().waitFor();
     const itemBeforeRemoval = await this.basketCard.count();
-    //This line will chech the number of card before removing the desired item
+    //This line will check the number of card before removing the desired item
     await this.basketItemPrice.first().waitFor();
     // first()is used to check any of the cards tp be loaded. If one is loaded, the others are too.
     const allPricesTexts = await this.basketItemPrice.allInnerTexts();
