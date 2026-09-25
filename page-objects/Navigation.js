@@ -5,6 +5,7 @@ export class NavigationBar {
     this.basketCounter = page.locator('[data-qa="header-basket-count"]');
     this.checkout = page.getByRole("link", { name: "checkout" });
   }
+
   getBasketCount = async () => {
     await this.basketCounter.waitFor();
     const text = await this.basketCounter.innerText();
