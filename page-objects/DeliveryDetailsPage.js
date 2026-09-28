@@ -1,3 +1,5 @@
+import { expect } from "@playwright/test";
+
 export class DeliveryDetailsPage {
   constructor(page) {
     this.page = page;
@@ -11,9 +13,7 @@ export class DeliveryDetailsPage {
     this.saveAdressForNextTime = page.getByRole("button", {
       name: "Save address for next time",
     });
-    this.continueToPaymentButton = page.getByRole("button", {
-      name: "Continue to payment",
-    });
+    this.savedAdressBox = page.locator('[data-qa="saved-address-container"]');
   }
 
   fillDeliveryDetails = async (deliveryDetails) => {
@@ -29,12 +29,26 @@ export class DeliveryDetailsPage {
     await this.city.fill(deliveryDetails.city);
     await this.countryDropdown.waitFor();
     await this.countryDropdown.selectOption(deliveryDetails.country);
-    await this.page.pause();
 
     await this.saveAdressForNextTime.waitFor();
     await this.saveAdressForNextTime.click();
-    await this.continueToPaymentButton.waitFor();
-    await this.continueToPaymentButton.click();
+
     await this.page.pause();
+
+    // await this.continueToPaymentButton.waitFor();
+    // await this.continueToPaymentButton.click();
+
+    // await this.page.pause();
+  };
+
+  saveDeliveryAdress = async () => {
+    const addresssCountBeforeSaving = this.savedAdressBox.count();
+    await this.saveAdressForNextTime.waitFor();
+    await this.saveAdressForNextTime.click();
+    await this.savedAdressBox.waitFor();
+
+    await expect(this.addresssCountBeforeSaving).toHaveCount(
+      addresssCountBeforeSaving + 1,
+    );
   };
 }

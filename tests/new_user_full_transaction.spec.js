@@ -33,4 +33,5 @@ test.only("New user full end-to-end transaction", async ({ page }) => {
 
   const deliveryDetailsPage = new DeliveryDetailsPage(page);
   await deliveryDetailsPage.fillDeliveryDetails(deliveryDetails);
+  await deliveryDetailsPage.saveDeliveryAdress();
 });
