@@ -42,12 +42,12 @@ export class DeliveryDetailsPage {
   };
 
   saveDeliveryAdress = async () => {
-    const addresssCountBeforeSaving = this.savedAdressBox.count();
+    const addresssCountBeforeSaving = await this.savedAdressBox.count();
     await this.saveAdressForNextTime.waitFor();
     await this.saveAdressForNextTime.click();
     await this.savedAdressBox.waitFor();
 
-    await expect(this.addresssCountBeforeSaving).toHaveCount(
+    await expect(this.savedAdressBox).toHaveCount(
       addresssCountBeforeSaving + 1,
     );
   };
