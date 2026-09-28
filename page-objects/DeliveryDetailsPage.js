@@ -14,6 +14,18 @@ export class DeliveryDetailsPage {
       name: "Save address for next time",
     });
     this.savedAdressBox = page.locator('[data-qa="saved-address-container"]');
+    this.savedAdressFirstName = page.locator(
+      '[data-qa="saved-address-firstName"]',
+    );
+    this.savedAdressLastName = page.locator(
+      '[data-qa="saved-address-lastName"]',
+    );
+    this.savedAdressStreet = page.locator('[data-qa="saved-address-street"]');
+    this.savedAdressPostCode = page.locator(
+      '[data-qa="saved-address-postcode"]',
+    );
+    this.savedAdressCity = page.locator('[data-qa="saved-address-city"]');
+    this.savedAdressCountry = page.locator('[data-qa="saved-address-country"]');
   }
 
   fillDeliveryDetails = async (deliveryDetails) => {
@@ -50,5 +62,33 @@ export class DeliveryDetailsPage {
     await expect(this.savedAdressBox).toHaveCount(
       addresssCountBeforeSaving + 1,
     );
+    await this.savedAdressFirstName.first().waitFor();
+    expect(await this.savedAdressFirstName.first().innerText()).toBe(
+      await this.userName.inputValue(),
+    );
+
+    await this.savedAdressStreet.first().waitFor();
+    expect(await this.savedAdressStreet.first().innerText()).toBe(
+      await this.street.inputValue(),
+    );
+
+    await this.savedAdressPostCode.first().waitFor();
+    expect(await this.savedAdressPostCode.first().innerText()).toBe(
+      await this.postCode.inputValue(),
+    );
+
+    await this.savedAdressCity.first().waitFor();
+    expect(await this.savedAdressCity.first().innerText()).toBe(
+      await this.city.inputValue(),
+    );
+    await this.savedAdressFirstName.first().waitFor();
+    expect(await this.savedAdressFirstName.first().innerText()).toBe(
+      await this.userName.inputValue(),
+    );
+    await this.savedAdressCountry.first().waitFor();
+    expect(await this.savedAdressCountry.first().innerText()).toBe(
+      await this.countryDropdown.inputValue(),
+    );
+    await this.page.pause();
   };
 }
