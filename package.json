@@ -10,5 +10,8 @@
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.63.0"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
   }
 }

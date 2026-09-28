@@ -7,11 +7,14 @@ export class RegisterPage {
     this.registerButton = page.getByRole("button", { name: "Register" });
   }
 
-  singupAsNewUSer = async () => {
+  singupAsNewUSer = async (email, password) => {
     await this.userNameField.waitFor();
-    await this.userNameField.fill("newUser@nadia1.com");
+    // const emailId = uuidv4();
+    // const email = emailId + "@gmail.com";
+    await this.userNameField.fill(email);
     await this.passwordField.waitFor();
-    await this.passwordField.fill("123456user");
+    // const password = uuidv4();
+    await this.passwordField.fill(password);
     await this.registerButton.waitFor();
     await this.registerButton.click();
     await this.page.pause();
