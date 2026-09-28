@@ -11,6 +11,6 @@ export class LoginPage {
     await this.singupButton.waitFor();
     await this.singupButton.click();
     await this.page.waitForURL(/\/signup/, { timeout: 3000 });
-    await this.page.pause();
+    // await this.page.pause();
   };
 }
