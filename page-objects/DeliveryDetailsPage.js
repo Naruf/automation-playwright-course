@@ -14,6 +14,7 @@ export class DeliveryDetailsPage {
       name: "Save address for next time",
     });
     this.savedAdressBox = page.locator('[data-qa="saved-address-container"]');
+
     this.savedAdressFirstName = page.locator(
       '[data-qa="saved-address-firstName"]',
     );
@@ -26,6 +27,9 @@ export class DeliveryDetailsPage {
     );
     this.savedAdressCity = page.locator('[data-qa="saved-address-city"]');
     this.savedAdressCountry = page.locator('[data-qa="saved-address-country"]');
+    this.continueToPayment = page.locator(
+      '[data-qa="continue-to-payment-button"]',
+    );
   }
 
   fillDeliveryDetails = async (deliveryDetails) => {
@@ -45,8 +49,6 @@ export class DeliveryDetailsPage {
     await this.saveAdressForNextTime.waitFor();
     await this.saveAdressForNextTime.click();
 
-    await this.page.pause();
-
     // await this.continueToPaymentButton.waitFor();
     // await this.continueToPaymentButton.click();
 
@@ -62,9 +64,15 @@ export class DeliveryDetailsPage {
     await expect(this.savedAdressBox).toHaveCount(
       addresssCountBeforeSaving + 1,
     );
+
     await this.savedAdressFirstName.first().waitFor();
     expect(await this.savedAdressFirstName.first().innerText()).toBe(
       await this.userName.inputValue(),
+    );
+
+    await this.savedAdressLastName.first().waitFor();
+    expect(await this.savedAdressLastName.first().innerText()).toBe(
+      await this.userLastName.inputValue(),
     );
 
     await this.savedAdressStreet.first().waitFor();
@@ -81,14 +89,16 @@ export class DeliveryDetailsPage {
     expect(await this.savedAdressCity.first().innerText()).toBe(
       await this.city.inputValue(),
     );
-    await this.savedAdressFirstName.first().waitFor();
-    expect(await this.savedAdressFirstName.first().innerText()).toBe(
-      await this.userName.inputValue(),
-    );
     await this.savedAdressCountry.first().waitFor();
     expect(await this.savedAdressCountry.first().innerText()).toBe(
       await this.countryDropdown.inputValue(),
     );
+  };
+
+  goToPayment = async () => {
+    await this.continueToPayment.waitFor();
+    await this.continueToPayment.click();
+    await this.page.waitForURL(/\/payment/, { timeout: 3000 });
     await this.page.pause();
   };
 }
