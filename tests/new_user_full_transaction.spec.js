@@ -7,6 +7,7 @@ import { LoginPage } from "../page-objects/LoginPage.js";
 import { RegisterPage } from "../page-objects/RegisterPage.js";
 import { DeliveryDetailsPage } from "../page-objects/DeliveryDetailsPage.js";
 import { deliveryDetails } from "../data/deliveryDetails.js";
+import { PaymentPage } from "../page-objects/PaymentPage.js";
 
 test.only("New user full end-to-end transaction", async ({ page }) => {
   const productsPage = new ProductPage(page);
@@ -35,4 +36,7 @@ test.only("New user full end-to-end transaction", async ({ page }) => {
   await deliveryDetailsPage.fillDeliveryDetails(deliveryDetails);
   await deliveryDetailsPage.saveDeliveryAdress();
   await deliveryDetailsPage.goToPayment();
+
+  const paymentPage = new PaymentPage(page);
+  await paymentPage.activateDiscount();
 });

@@ -48,11 +48,6 @@ export class DeliveryDetailsPage {
 
     await this.saveAdressForNextTime.waitFor();
     await this.saveAdressForNextTime.click();
-
-    // await this.continueToPaymentButton.waitFor();
-    // await this.continueToPaymentButton.click();
-
-    // await this.page.pause();
   };
 
   saveDeliveryAdress = async () => {
@@ -89,6 +84,7 @@ export class DeliveryDetailsPage {
     expect(await this.savedAdressCity.first().innerText()).toBe(
       await this.city.inputValue(),
     );
+
     await this.savedAdressCountry.first().waitFor();
     expect(await this.savedAdressCountry.first().innerText()).toBe(
       await this.countryDropdown.inputValue(),
@@ -99,6 +95,5 @@ export class DeliveryDetailsPage {
     await this.continueToPayment.waitFor();
     await this.continueToPayment.click();
     await this.page.waitForURL(/\/payment/, { timeout: 3000 });
-    await this.page.pause();
   };
 }
