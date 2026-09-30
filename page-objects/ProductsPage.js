@@ -25,8 +25,9 @@ export class ProductPage {
     await expect(specificAddButton).toHaveText("Add to Basket");
     const navigation = new NavigationBar(this.page);
     //only desktop viewport
+    let basketCounterBeforeAdding;
     if (isDesktopViewport(this.page)) {
-      const basketCounterBeforeAdding = await navigation.getBasketCount();
+      basketCounterBeforeAdding = await navigation.getBasketCount();
     }
     await specificAddButton.click();
     await expect(specificAddButton).toHaveText("Remove from Basket");
