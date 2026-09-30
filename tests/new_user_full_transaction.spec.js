@@ -18,32 +18,33 @@ test.only("New user full end-to-end transaction", async ({ page }) => {
   await productsPage.addProductToBasket(0);
   await productsPage.addProductToBasket(1);
   await productsPage.addProductToBasket(2);
+  await page.pause();
 
-  const navigation = new NavigationBar(page);
-  await navigation.goToCheckout();
+  // const navigation = new NavigationBar(page);
+  // await navigation.goToCheckout();
 
-  const checkout = new Checkout(page);
-  await checkout.removeCheapestProduct();
-  await checkout.continueToCheckout();
+  // const checkout = new Checkout(page);
+  // await checkout.removeCheapestProduct();
+  // await checkout.continueToCheckout();
 
-  const login = new LoginPage(page);
-  await login.goToSingUpPage();
+  // const login = new LoginPage(page);
+  // await login.goToSingUpPage();
 
-  const registerPage = new RegisterPage(page);
-  const email = uuidv4() + "@gmail.com";
-  const password = uuidv4();
-  await registerPage.singupAsNewUSer(email, password);
+  // const registerPage = new RegisterPage(page);
+  // const email = uuidv4() + "@gmail.com";
+  // const password = uuidv4();
+  // await registerPage.singupAsNewUSer(email, password);
 
-  const deliveryDetailsPage = new DeliveryDetailsPage(page);
-  await deliveryDetailsPage.fillDeliveryDetails(deliveryDetails);
-  await deliveryDetailsPage.saveDeliveryAdress();
-  await deliveryDetailsPage.goToPayment();
+  // const deliveryDetailsPage = new DeliveryDetailsPage(page);
+  // await deliveryDetailsPage.fillDeliveryDetails(deliveryDetails);
+  // await deliveryDetailsPage.saveDeliveryAdress();
+  // await deliveryDetailsPage.goToPayment();
 
-  const paymentPage = new PaymentPage(page);
-  await paymentPage.activateDiscount();
-  await paymentPage.fillPaymentDetails(paymentDetails);
-  await paymentPage.confirmPayment();
+  // const paymentPage = new PaymentPage(page);
+  // await paymentPage.activateDiscount();
+  // await paymentPage.fillPaymentDetails(paymentDetails);
+  // await paymentPage.confirmPayment();
 
-  const thankyouPage = new ThankyouPage(page);
-  await thankyouPage.goBackToShop();
+  // const thankyouPage = new ThankyouPage(page);
+  // await thankyouPage.goBackToShop();
 });

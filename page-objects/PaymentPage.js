@@ -1,5 +1,4 @@
 import { expect } from "@playwright/test";
-import { paymentDetails } from "../data/paymentDetails";
 
 export class PaymentPage {
   constructor(page) {
