@@ -1,4 +1,5 @@
 import { expect } from "@playwright/test";
+import { paymentDetails } from "../data/paymentDetails";
 
 export class PaymentPage {
   constructor(page) {
@@ -17,6 +18,12 @@ export class PaymentPage {
       '[data-qa="total-with-discount-value"]',
     );
     this.totalPrice = page.locator('[data-qa="total-value"]');
+
+    this.cardOwner = page.locator('[data-qa="credit-card-owner"]');
+    this.cardNumber = page.locator('[data-qa="credit-card-number"]');
+    this.exparingDate = page.locator('[data-qa="valid-until"]');
+    this.cvc = page.locator('[data-qa="credit-card-cvc"]');
+    this.confirmPaymentButton = page.locator('[data-qa="pay-button"]');
   }
 
   activateDiscount = async () => {
@@ -32,14 +39,15 @@ export class PaymentPage {
     // await this.page.keyboard.type(code, { delay: 1000 });
     // expect(await this.discountInputField.inputValue()).toBe(code);
 
-    // expect(await this.discountConfirmationMessage.isVisible()).toBe(false);
-    await expect(this.discountConfirmationMessage).toBeHidden();
+    expect(await this.discountConfirmationMessage.isVisible()).toBe(false);
+    // Another way of checking this: await expect(this.discountConfirmationMessage).toBeHidden();
+
     await this.activeDiscountButton.waitFor();
     await this.activeDiscountButton.click();
     await this.discountConfirmationMessage.waitFor();
 
-    // expect(await this.discountConfirmationMessage.isVisible()).toBe(true);
-    await expect(this.discountConfirmationMessage).toBeVisible();
+    expect(await this.discountConfirmationMessage.isVisible()).toBe(true);
+    // Another way of checking this: await expect(this.discountConfirmationMessage).toBeVisible();
 
     await this.totalPrice.waitFor();
     const totalPriceText = await this.totalPrice.innerText();
@@ -52,7 +60,22 @@ export class PaymentPage {
     const discountedPriceInt = parseInt(discountedPriceStringNumber, 10);
 
     expect(discountedPriceInt).toBeLessThan(totalPriceInt);
+  };
 
-    await this.page.pause();
+  fillPaymentDetails = async (paymentDetails) => {
+    await this.cardOwner.waitFor();
+    await this.cardOwner.fill(paymentDetails.cardOwner);
+    await this.cardNumber.waitFor();
+    await this.cardNumber.fill(paymentDetails.cardNumber);
+    await this.exparingDate.waitFor();
+    await this.exparingDate.fill(paymentDetails.exparingDate);
+    await this.cvc.waitFor();
+    await this.cvc.fill(paymentDetails.cvc);
+  };
+
+  confirmPayment = async () => {
+    await this.confirmPaymentButton.waitFor();
+    await this.confirmPaymentButton.click();
+    await this.page.waitForURL(/\/thank-you/, { timeout: 3000 });
   };
 }

@@ -8,6 +8,8 @@ import { RegisterPage } from "../page-objects/RegisterPage.js";
 import { DeliveryDetailsPage } from "../page-objects/DeliveryDetailsPage.js";
 import { deliveryDetails } from "../data/deliveryDetails.js";
 import { PaymentPage } from "../page-objects/PaymentPage.js";
+import { paymentDetails } from "../data/paymentDetails.js";
+import { ThankyouPage } from "../page-objects/ThankyouPage.js";
 
 test.only("New user full end-to-end transaction", async ({ page }) => {
   const productsPage = new ProductPage(page);
@@ -39,4 +41,9 @@ test.only("New user full end-to-end transaction", async ({ page }) => {
 
   const paymentPage = new PaymentPage(page);
   await paymentPage.activateDiscount();
+  await paymentPage.fillPaymentDetails(paymentDetails);
+  await paymentPage.confirmPayment();
+
+  const thankyouPage = new ThankyouPage(page);
+  await thankyouPage.goBackToShop();
 });
