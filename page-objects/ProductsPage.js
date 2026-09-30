@@ -1,10 +1,11 @@
 import { expect } from "@playwright/test";
 import { NavigationBar } from "./Navigation";
+import { isDesktopViewport } from "../utils/isDesktopViewport";
 
-const isDesktopViewport = (page) => {
-  const size = page.viewportSize();
-  return size.width >= 600;
-};
+// const isDesktopViewport = (page) => {
+//   const size = page.viewportSize();
+//   return size.width >= 600;
+// };
 
 export class ProductPage {
   constructor(page) {
