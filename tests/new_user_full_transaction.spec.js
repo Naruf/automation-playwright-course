@@ -11,7 +11,7 @@ import { PaymentPage } from "../page-objects/PaymentPage.js";
 import { paymentDetails } from "../data/paymentDetails.js";
 import { ThankyouPage } from "../page-objects/ThankyouPage.js";
 
-test.only("New user full end-to-end transaction", async ({ page }) => {
+test("New user full end-to-end transaction", async ({ page }) => {
   const productsPage = new ProductPage(page);
   await productsPage.visit();
   await productsPage.sortByCheapest();
