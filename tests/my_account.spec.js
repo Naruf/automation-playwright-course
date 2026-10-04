@@ -1,12 +1,16 @@
+import * as dotenv from "dotenv";
+dotenv.config();
 import { test } from "@playwright/test";
 import { MyAccountPage } from "../page-objects/MyAccountPage";
 import { getLoginToken } from "../api-calls/getLoginToken";
+import { userDetails } from "../data/userDetails";
 
 test.only("My account using cookie injection", async ({ page }) => {
-  //Make a request to get the login token
-  const loginToken = await getLoginToken();
-  console.warn({ loginToken });
-  //Inject the login token into the browser
+  const loginToken = await getLoginToken(
+    userDetails.username,
+    userDetails.password,
+  );
+
   const myAccount = new MyAccountPage(page);
   await myAccount.visit();
   //Injecting the cookie here
