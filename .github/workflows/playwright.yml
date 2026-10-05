@@ -20,4 +20,4 @@ jobs:
           echo "Install dependencies"
           npm ci
           echo "Run playwright test"
-          npm run test:ci
+          npm run test:ci || { echo "---- app log ----"; cat app.log; exit 1; }
