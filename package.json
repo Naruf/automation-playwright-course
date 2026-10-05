@@ -10,7 +10,7 @@
   "keywords": [],
   "type": "commonjs",
   "devDependencies": {
-    "@playwright/test": "^1.63.0"
+    "@playwright/test": "1.29.1"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
