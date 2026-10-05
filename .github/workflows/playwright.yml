@@ -15,8 +15,11 @@ jobs:
       - name: Run test
         run: |
           echo "Start the shopping store application"
-          ./shopping-store-linux-amd64 &
+          chmod +x ./shopping-store-linux-amd64
+          ./shopping-store-linux-amd64 > app.log 2>&1 &
           echo "Install dependencies"
           npm ci
+          echo "Wait for the application"
+          npx --yes wait-on -t 30000 tcp:127.0.0.1:2221 || { cat app.log; exit 1; }
           echo "Run playwright test"
           npm run test:ci
