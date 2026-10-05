@@ -16,7 +16,6 @@ jobs:
         run: |
           echo "Start the shopping store application"
           chmod +x ./shopping-store-linux-amd64 &
-          ./shopping-store-linux-amd64 &
           echo "Install dependencies"
           npm ci
           echo "Run playwright test"
