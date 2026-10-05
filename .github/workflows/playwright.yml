@@ -3,10 +3,10 @@ on:
   push:
     branches: [main]
   jobs:
-    playwrihgttests:
+    playwrighttests:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout repository
-          uses: actions/checkout@v2
+          uses: actions/Checkout@v2
         - name: Say hello
           uses: echo Hello
