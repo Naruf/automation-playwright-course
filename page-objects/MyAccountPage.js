@@ -10,7 +10,7 @@ export class MyAccountPage {
   };
   waitForPageHeading = async () => {
     await this.myAccountHeading.waitFor();
-    await this.page.pause();
+    // await this.page.pause();
   };
   waitForErrorMessage = async () => {
     await this.serverFailErrorMockup.waitFor();

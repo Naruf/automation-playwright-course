@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test --headed",
+    "ui": "playwright test --ui",
     "test:ci": "playwright test"
   },
   "keywords": [],
   "type": "commonjs",
   "devDependencies": {
-    "@playwright/test": "^1.29.1"
+    "@playwright/test": "^1.32.1"
   },
   "dependencies": {
     "dotenv": "^16.0.3",

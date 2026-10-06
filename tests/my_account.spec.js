@@ -13,7 +13,7 @@ test("My account using cookie injection and mocking network request", async ({
   await page.route("**/api/user**", async (route, request) => {
     await route.fulfill({
       status: 500,
-      contentType: "application / json",
+      contentType: "application/json",
       body: JSON.stringify({ message: "PLAYWRIGHT ERROR FROM MOCKING" }),
     });
   });
